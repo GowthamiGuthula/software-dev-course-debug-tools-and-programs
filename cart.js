@@ -21,6 +21,10 @@ function applyDiscount(total, discountRate) {
 }
 
 function generateReceipt(cartItems, total) {
+  if (isNaN(total)) { // Fixed: Validate total is a number
+ console.error("Invalid total. Cannot generate receipt.");
+ return "Error generating receipt.";
+  }
   let receipt = "Items:\n";
 
   cartItems.forEach(item => {
@@ -28,7 +32,7 @@ function generateReceipt(cartItems, total) {
   }); 
 
   receipt += `Total: $${total.toFixed(2)}`; // Bug: total may not be a number
-    
+
   return receipt;
 }
 
